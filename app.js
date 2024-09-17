@@ -3,7 +3,6 @@ import express from "express"
 import nodemailer from "nodemailer"
 import winston from "winston"
 
-
 dotenv.config({
     path:'.env'
 })
@@ -18,7 +17,6 @@ const logger = winston.createLogger({
     ]
 })
 
-
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     secure: true,
@@ -27,7 +25,6 @@ const transporter = nodemailer.createTransport({
         user:process.env.EMAIL_USER,
         pass:process.env.EMAIL_PASS 
     }
-
 })
 
 app.post('/send-mail', (req, res)=>{
@@ -35,7 +32,7 @@ app.post('/send-mail', (req, res)=>{
         from: process.env.EMAIL_USER,
         to: process.env.RECEIVER_MAIL,
         subject: "Nodejs mail testing",
-        text: "Hello"
+        text: "This is a nodemailer testing mail."
     }
 
     transporter.sendMail(mailOptions, (error, info)=>{
